@@ -40,7 +40,7 @@ public class enemy_script : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(vector_towards_player * 3, ForceMode2D.Impulse);
             can_move = false;
             LeanTween.delayedCall(1.0f, () => { can_move = true; });
-            player.gameObject.LeanColor(Color.red, 0.05f);
+            player.gameObject.LeanColor(Color.red, 0.01f);
             player.gameObject.LeanColor(Color.white, 0.4f);
 
 

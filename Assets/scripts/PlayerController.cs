@@ -13,11 +13,11 @@ public class PlayerController : MonoBehaviour
     public float cur_hp;
     public float def;
 
-
-
     public Transform attack_perks;
     public AudioSource audio_source;
     public GameObject hp_bar;
+
+    public Sound_data sound_data;
     void Start()
     {
         body = this.GetComponent<Rigidbody2D>();
@@ -60,5 +60,11 @@ public class PlayerController : MonoBehaviour
 
         cur_hp -= damage;
         hp_bar.GetComponent<UnityEngine.UI.Image>().fillAmount = cur_hp/max_hp;
+    }
+
+
+    public AudioClip GetSound(string sound_name)
+    {
+        return sound_data.GetDictionary()[sound_name];
     }
 }

@@ -56,25 +56,17 @@ public class perk_script : MonoBehaviour
         if (cur_cooldawn<=0)
         {
             Shot();
-            cur_cooldawn = cooldawn_time-speed;
+            cur_cooldawn = cooldawn_time;
         }
         else
         {
-            cur_cooldawn -= Time.deltaTime;
+            cur_cooldawn -= Time.deltaTime*speed;
         }
     }
     
     void Shot()
     {
-        if (perk_name == "shotgun")
-        {
-
-            player_script.PlaySound(GetSound("shotgun_shot"));
-            GameObject shotgun_shot = GetObject("shotgun_shot");
-            shotgun_shot.transform.RotateAround(player_script.gameObject.transform.position, Vector3.forward, Random.Range(-1000, 1000));
-            shotgun_shot.LeanAlpha(1, 0f);
-            shotgun_shot.LeanAlpha(0, 0.5f);
-        }
+        transform.GetChild(0).GetComponent<FightObject_template>().Shot();
 
     }
 }
