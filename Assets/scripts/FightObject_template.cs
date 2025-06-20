@@ -17,7 +17,7 @@ public class FightObject_template : MonoBehaviour
 
     virtual public void Shot() { }
 
-    virtual public void EnemyMakeImpact() { }
+    virtual public void EnemyMakeImpact(enemy_script enemy) { }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,7 +26,7 @@ public class FightObject_template : MonoBehaviour
         {
             if (collision.GetComponent<Collider2D>().tag == "enemy")
             {
-                EnemyMakeImpact();
+                EnemyMakeImpact(collision.GetComponent<Collider2D>().GetComponent<enemy_script>());
                 Debug.Log("IMPACT");
             }
         }

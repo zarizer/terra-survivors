@@ -5,6 +5,10 @@ using UnityEngine;
 public class fp_shotgun_script : FightObject_template
 {
     public PlayerController player;
+
+    public float damage;
+    public float push_strengh;
+    public string damage_type;
     void Start()
     {
         
@@ -19,7 +23,7 @@ public class fp_shotgun_script : FightObject_template
     {
         
     }
-
+    
     public override void Shot()
     {
         player.PlaySound(player.GetSound("shotgun_shot"));
@@ -32,10 +36,21 @@ public class fp_shotgun_script : FightObject_template
         {
             if (hit.CompareTag("enemy"))
             {
-                EnemyMakeImpact();
-                Debug.Log("IMPACT (вращение)");
+                EnemyMakeImpact(hit.GetComponent<enemy_script>());
+                hit.GetComponent<enemy_script>().GetDamage(damage, damage_type);
             }
         }
         LeanTween.delayedCall(0.2f, () => { damage_on = false; });
+    }
+
+    public override void EnemyMakeImpact(enemy_script enemy)
+    {
+        Vector2 vector_towards_player = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
+        vector_towards_player.Normalize();
+        enemy.gameObject.GetComponent<Rigidbody2D>().AddForce(vector_towards_player * push_strengh, ForceMode2D.Impulse);
+        enemy.can_move = false;
+        LeanTween.delayedCall(0.2f, () => { enemy.can_move = true; });
+        enemy.gameObject.LeanColor(Color.red, 0.01f);
+        enemy.gameObject.LeanColor(Color.white, 0.4f);
     }
 }
