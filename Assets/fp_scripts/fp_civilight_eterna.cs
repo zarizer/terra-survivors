@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class fp_shotgun_script : FightObject_template
+public class fp_civilight_eterna : FightObject_template
 {
     public PlayerController player;
 
@@ -12,19 +11,19 @@ public class fp_shotgun_script : FightObject_template
     public string damage_type;
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
     }
-    
+
     public override void Shot()
     {
         player.PlaySound(player.GetSound("shotgun_shot"));
@@ -53,13 +52,5 @@ public class fp_shotgun_script : FightObject_template
         LeanTween.delayedCall(0.2f, () => { enemy.can_move = true; });
         enemy.gameObject.LeanColor(Color.red, 0.01f);
         enemy.gameObject.LeanColor(Color.white, 0.4f);
-    }
-
-    public override void GetReady()
-    {
-        transform.parent.GetComponent<perk_script>().ChangeImage("shotgun_perk");
-        transform.parent.GetComponent<perk_script>().perk_name = "shotgun";
-        transform.position = player.transform.position + Vector3.up * 0.75f;
-        transform.localScale = Vector3.one * 150;
     }
 }

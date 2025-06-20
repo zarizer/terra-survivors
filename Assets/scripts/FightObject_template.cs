@@ -19,6 +19,8 @@ public class FightObject_template : MonoBehaviour
 
     virtual public void EnemyMakeImpact(enemy_script enemy) { }
 
+    virtual public void GetReady() { }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.GetComponent<Collider2D>().tag);
