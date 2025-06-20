@@ -98,8 +98,6 @@ public class enemy_script : MonoBehaviour
         GameObject death_effect = Instantiate(particles.death_effetcs[(int)weight - 1]);
         death_effect.transform.position = transform.position;
         death_effect.GetComponent<ParticleSystem>().Play();
-        gameObject.SetActive(false);
         LeanTween.delayedCall(5.0f, () => { Destroy(death_effect); });
-        LeanTween.delayedCall(6.0f, () => { Destroy(gameObject); });
     }
 }
