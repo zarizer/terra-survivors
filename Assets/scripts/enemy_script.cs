@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEditor.Toolbars;
 using UnityEngine;
@@ -16,7 +17,9 @@ public class enemy_script : MonoBehaviour
 
     public Particle_data particles;
     public Transform player;
-
+    public Sound_data sound_data;
+    public AudioSource audio_source;
+    public AudioClip death_sound;
 
     public bool can_move = true;
     void Start()
@@ -88,8 +91,8 @@ public class enemy_script : MonoBehaviour
     {
         if (hp <=0)
         {
-            Destroy(gameObject);
             Death();
+            Destroy(gameObject);
         }
     }
 
@@ -99,5 +102,14 @@ public class enemy_script : MonoBehaviour
         death_effect.transform.position = transform.position;
         death_effect.GetComponent<ParticleSystem>().Play();
         LeanTween.delayedCall(5.0f, () => { Destroy(death_effect); });
+        PlaySound(death_sound);
+    }
+    public void PlaySound(AudioClip sound)
+    {
+        GameObject audio_Source = Instantiate(audio_source.gameObject,audio_source.transform);
+        audio_Source.GetComponent<AudioSource>().clip = sound;
+        audio_Source.GetComponent<AudioSource>().pitch = ((float)Random.Range(90, 120)) / 100;
+        audio_Source.GetComponent<AudioSource>().Play();
+        LeanTween.delayedCall(sound.length, () => { Destroy(audio_Source); });
     }
 }
