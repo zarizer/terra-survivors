@@ -9,6 +9,7 @@ using UnityEngine;
 public class Generate_enemies : MonoBehaviour
 {
     public float timer = 0;
+    public float spawn_time = 3;
     public List<GameObject> enemies;
     public PlayerController player;
     public GameObject enemy_spawner;
@@ -27,7 +28,7 @@ public class Generate_enemies : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 3)
+        if (timer > spawn_time)
         {
             timer = 0;
             GameObject enemy = Instantiate(enemies[Random.Range(0,3)],transform);
