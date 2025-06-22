@@ -30,6 +30,7 @@ public class main : MonoBehaviour
                 stat_perks.GetChild(i).GetComponent<perk_script>().ChangeImage("empty_perk");
             }
             player1.AddAttackPerk("shotgun_perk");
+            player1.AddAttackPerk("civilight_eterna");
 
         }
     }

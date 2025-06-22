@@ -28,7 +28,7 @@ public class fp_shotgun_script : FightObject_template
     public override void Shot()
     {
         player.PlaySound(player.GetSound("shotgun_shot"));
-        transform.RotateAround(player.gameObject.transform.position, Vector3.forward, Random.Range(-1000, 1000));
+        transform.RotateAround(player.gameObject.transform.position, Vector3.forward, Random.Range(-10000, 10000));
         gameObject.LeanAlpha(1, 0f);
         damage_on = true;
         gameObject.LeanAlpha(0, 0.5f);

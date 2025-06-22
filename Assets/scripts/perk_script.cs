@@ -32,7 +32,6 @@ public class perk_script : MonoBehaviour
     public void ChangeImage(string perk_name)
     {
         perk_sprite = GetTexture(perk_name);
-        Debug.Log("here");
         GetComponent<UnityEngine.UI.Image>().sprite = perk_sprite;
     }
 

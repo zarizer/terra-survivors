@@ -29,7 +29,6 @@ public class FightObject_template : MonoBehaviour
             if (collision.GetComponent<Collider2D>().tag == "enemy")
             {
                 EnemyMakeImpact(collision.GetComponent<Collider2D>().GetComponent<enemy_script>());
-                Debug.Log("IMPACT");
             }
         }
     }

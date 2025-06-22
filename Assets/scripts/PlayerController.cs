@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public Sound_data sound_data;
     public Object_data object_data;
+    public texture_data texture_data;
     void Start()
     {
         body = this.GetComponent<Rigidbody2D>();
@@ -74,9 +75,18 @@ public class PlayerController : MonoBehaviour
         GameObject perk = Instantiate(object_data.GetDictionary()["attack_perk"], attack_perks);
         perk.name = "attack_perk" + (attack_perks.childCount + 1).ToString();
         perk.transform.localScale = Vector3.one;
-        perk.GetComponent<RectTransform>().localPosition = new Vector2(25 * (transform.parent.childCount - 1), -25) ;
-        GameObject real_perk = Instantiate(object_data.GetDictionary()["shotgun_shot"], perk.transform);
-        real_perk.GetComponent<FightObject_template>().name = perk_name;
-        real_perk.GetComponent<FightObject_template>().GetReady();
+        perk.GetComponent<RectTransform>().localPosition = new Vector2(50 * (attack_perks.transform.childCount) - 25, -25) ;
+        if (perk_name == "shotgun_perk")
+        {
+            GameObject real_perk = Instantiate(object_data.GetDictionary()["shotgun_shot"], perk.transform);
+            real_perk.GetComponent<FightObject_template>().name = perk_name;
+            real_perk.GetComponent<FightObject_template>().GetReady();
+        }
+        else if (perk_name == "civilight_eterna")
+        {
+            GameObject real_perk = Instantiate(object_data.GetDictionary()["civilight_eterna"], perk.transform);
+            real_perk.GetComponent<FightObject_template>().name = perk_name;
+            real_perk.GetComponent<FightObject_template>().GetReady();
+        }
     }
 }

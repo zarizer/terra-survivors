@@ -74,7 +74,9 @@ public class enemy_script : MonoBehaviour
         }
         if (damage_type == "arts")
         {
-            damage -= damage * (1-res);
+ 
+            damage -= damage * (res);
+
             if (damage <= 0)
             {
                 damage = 1;
